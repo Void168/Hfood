@@ -1,21 +1,22 @@
+import bcrypt from 'bcryptjs';
+
 const data ={
     users: [
         {
-            name: 'Hung Le',
-            email: 'phuhung16820@gmail.com',
-            password: bcrypt.hashSync('hung12345', 8),
+            name: 'Phu Hung',
+            email: 'hungle408.k44@st.ueh.edu.com',
+            password: bcrypt.hashSync('Phuhung168', 8),
             isAdmin: true,
         },
         {
             name: 'KennyS',
             email: 'mrhspacespeaker168@gmail.com',
-            password: bcrypt.hashSync('hung12345', 8),
+            password: bcrypt.hashSync('Phuhung168', 8),
             isAdmin: false,
         },
     ],
     products: [
         {
-            _id: '1',
             name: 'Bayonet Lore',
             category: 'Dao',
             image: '/images/bayonet-lore.png',
@@ -28,7 +29,6 @@ const data ={
             description:'Bayonet là một con dao thẩm mỹ có sẵn cho người chơi trong Counter-Strike: Global Offensive, và là một vật phẩm cực kỳ hiếm nhận được khi mở một số hộp vũ khí nhất định.'
         },
         {
-            _id: '2',
             name: 'Bowie Tiger Tooth',
             category: 'Dao',
             image: '/images/bowie-tiger-tooth.png',
@@ -41,7 +41,6 @@ const data ={
             description:'Con dao Bowie có lưỡi cưa đầy đủ tang này được thiết kế để sử dụng nhiều trong các tình huống sinh tồn tàn khốc.'
         },
         {
-            _id: '3',
             name: 'Butterfly Doppler',
             category: 'Dao',
             image: '/images/butterfly-doppler.png',
@@ -54,7 +53,6 @@ const data ={
             description:'Đây là một chiếc balisong được thiết kế riêng, thường được gọi là dao bướm. Đặc điểm nổi bật của loại vũ khí này là phần mở giống như cánh quạt của một lưỡi quay tự do, cho phép triển khai hoặc che giấu nhanh chóng. Do đó, dao bướm bị đặt ngoài vòng pháp luật ở nhiều quốc gia.'
         },
         {
-            _id: '4',
             name: 'Classic Vanilla',
             category: 'Dao',
             image: '/images/classic-vanilla.png',
@@ -67,7 +65,6 @@ const data ={
             description:'Là loại dao cổ điển của dòng Counter-Strike, cạnh của con dao này được thiết kế vừa vặn với máy ép Stellite được giữ ở vị trí hoàn hảo do nó phù hợp chính xác với titan trên má và xương sống của lưỡi dao. Tay cầm là ngà voi răng mấu hóa thạch được giữ trong một túi bằng sợi carbon.'
         },
         {
-            _id: '5',
             name: 'Falchion Ultra Violet',
             category: 'Dao',
             image: '/images/falchion-ultra-violet.png',
@@ -80,7 +77,6 @@ const data ={
             description:'Một sự tôn kính hiện đại đối với một thanh kiếm falchion, lưỡi clip nhọn này có một cạnh cong.'
         },
         {
-            _id: '6',
             name: 'Flip Gamma Doppler',
             category: 'Dao',
             image: '/images/flip-gamma-dopller.png',
@@ -93,7 +89,6 @@ const data ={
             description:'Dao lật có lưỡi quét ngược kiểu Ba Tư với đầu nhọn. Mặc dù bản thân nó có thể dễ vỡ, nhưng thiết kế tổng thể của thiết kế của con dao lật lại bền một cách đáng ngạc nhiên.'
         },
         {
-            _id: '7',
             name: 'Gut Knife Autotronic',
             category: 'Dao',
             image: '/images/gut-autotronic.png',
@@ -106,7 +101,6 @@ const data ={
             description:'Đặc điểm đáng chú ý nhất của dao rút ruột là phần móc ruột trên xương sống của lưỡi dao. Ban đầu được phổ biến như một phương tiện hỗ trợ cho trò chơi mặc quần áo trên sân, móc ruột cũng có hiệu quả trong việc cắt các vật liệu dạng sợi như dây thừng, dây vải hoặc dây đai an toàn một cách dễ dàng.'
         },
         {
-            _id: '8',
             name: 'Huntsman Damascus Steel',
             category: 'Dao',
             image: '/images/huntsman-damacus-steel.png',
@@ -119,7 +113,6 @@ const data ={
             description:'Một con dao được thiết kế cho các mục đích chiến thuật hiện đại, lưỡi dao này rất phù hợp cho một loạt các nhu cầu chiến đấu và thực dụng. Điểm Tanto độc đáo cho phép thâm nhập tối đa qua cả những bề mặt khó khăn nhất.'
         },
         {
-            _id: '9',
             name: 'Karambit Black Laminate',
             category: 'Dao',
             image: '/images/karambit-black-lamienate.png',
@@ -132,7 +125,6 @@ const data ={
             description:'Với lưỡi cong mô phỏng móng vuốt của một con hổ, karambit được phát triển như một phần của môn võ silat ở Đông Nam Á. Dao thường được sử dụng với chuôi ngược, với ngón đeo nhẫn trên ngón trỏ.'
         },
         {
-            _id: '10',
             name: 'M9 Bayonet FreeHand',
             category: 'Dao',
             image: '/images/m9-bayonet-free-hand.png',
@@ -145,7 +137,6 @@ const data ={
             description:'Đây là lưỡi lê M-9. Ban đầu được thiết kế để gắn trên một khẩu súng trường, nó cũng rất thích hợp để chiến đấu tầm gần.'
         },
         {
-            _id: '11',
             name: 'Navaja Blue Steel',
             category: 'Dao',
             image: '/images/navaja-bluesteel.png',
@@ -158,7 +149,6 @@ const data ={
             description:'Con dao lật được tráng men bằng đá cẩm thạch này che giấu một lưỡi dao thon nhỏ nhưng hung ác.'
         },
         {
-            _id: '12',
             name: 'Paracord Case Hardened',
             category: 'Dao',
             image: '/images/paracord-caseharden.png',
@@ -171,7 +161,6 @@ const data ={
             description:'Loại dao sinh tồn có lưỡi cố định này được thiết kế để chống lại việc được sử dụng như một vũ khí và một công cụ, chẳng hạn như để đặt bẫy, săn bắt động vật hoặc cắt tán lá. Tay cầm được quấn theo chiều dài của paracord đa năng.'
         },
         {
-            _id: '13',
             name: 'Nomad Fade',
             category: 'Dao',
             image: '/images/nomad-fade.png',
@@ -184,7 +173,6 @@ const data ={
             description:'Con dao có lưỡi khóa săn bắn chiến thuật tiện dụng này có phần chèn tay cầm bằng composite và một lưỡi dao rộng, chắc chắn, hữu ích để cắt và cạy các vật liệu khác nhau.'
         },
         {
-            _id: '14',
             name: 'Shadow Dagger Forest DDPAT',
             category: 'Dao',
             image: '/images/shadow-dagger-forest-ddpat.png',
@@ -197,7 +185,6 @@ const data ={
             description:'Được thiết kế cho sự tàn bạo hiệu quả, sử dụng dao găm đẩy đơn giản như ném một hoặc hai cú đấm.'
         },
         {
-            _id: '15',
             name: 'Stiletto Scorched',
             category: 'Dao',
             image: '/images/stiletto-Scorched.png',
@@ -210,7 +197,6 @@ const data ={
             description:'Trong lịch sử, một tiêu điểm của sự tranh cãi và thậm chí là quy định, con dao mũi nhọn kiểu Ý này có một lưỡi được nạp vào lò xo có thể được triển khai gần như ngay lập tức chỉ với một cú nhấn nhả.'
         },
         {
-            _id: '16',
             name: 'Skeleton CrimsonWeb',
             category: 'Dao',
             image: '/images/skeleton-crimsonweb.png',
@@ -223,7 +209,6 @@ const data ={
             description:'Con dao tang có xương này đã được dán ở tay cầm để cải thiện độ bám. Lỗ cho phép luồn ngón tay qua để đảm bảo độ ổn định và an toàn.'
         },
         {
-            _id: '17',
             name: 'Survival Knife Slaughter',
             category: 'Dao',
             image: '/images/survival-slaughter.png',
@@ -236,7 +221,6 @@ const data ={
             description:'Con dao tuyệt vời để sinh tồn trong chiến đấu.'
         },
         {
-            _id: '18',
             name: 'Talon Marble Fade',
             category: 'Dao',
             image: '/images/talon-marblefade.png',
@@ -249,7 +233,6 @@ const data ={
             description:'Chiếc karambit được xử lý bằng ngà voi này có đinh tán bằng đồng và đường gờ răng cưa, vì vậy nó cắt trên đường vào và rách trên đường ra.'
         },
         {
-            _id: '19',
             name: 'Ursus Rust Coat',
             category: 'Dao',
             image: '/images/ursus-rustcoat.png',
