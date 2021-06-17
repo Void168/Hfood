@@ -5,14 +5,14 @@ const data ={
         {
             name: 'Phu Hung',
             email: 'hungle408.k44@st.ueh.edu.com',
-            password: bcrypt.hashSync('Phuhung168', 8),
-            isAdmin: true,
+            password: bcrypt.hashSync('hung12345', 8),
+            isAdmin: false,
         },
         {
             name: 'KennyS',
             email: 'mrhspacespeaker168@gmail.com',
             password: bcrypt.hashSync('Phuhung168', 8),
-            isAdmin: false,
+            isAdmin: true,
         },
     ],
     products: [
