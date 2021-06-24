@@ -12,8 +12,20 @@ const data ={
             name: 'KennyS',
             email: 'mrhspacespeaker168@gmail.com',
             password: bcrypt.hashSync('Phuhung168', 8),
+            isAdmin: false,
+        },
+        {
+            name: 'Lê Phú Hưng',
+            email: 'mrspaceboiz@icloud.com',
+            password: bcrypt.hashSync('hung12345', 8),
             isAdmin: true,
         },
+        {
+            name: 'MrH',
+            email: 'kennyschrub195@gmail.com',
+            password: bcrypt.hashSync('Phuhung168', 8),
+            isAdmin: true,
+        }
     ],
     products: [
         {
