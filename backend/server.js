@@ -1,3 +1,5 @@
+/*eslint no-undef: "error"*/
+/*eslint-env node*/
 import express from 'express';
 import mongoose from 'mongoose';
 import userRouter from './routers/userRouter.js';
