@@ -34,4 +34,40 @@ productRouter.get(
       }
   }))
 
+  productRouter.post('/', isAuth, isAdmin, async (req, res) => {
+    const product = new Product({
+      name: req.body.name,
+      price: req.body.price,
+      image: req.body.image,
+      brand: req.body.brand,
+      category: req.body.category,
+      countInStock: req.body.countInStock,
+      description: req.body.description,
+      rating: req.body.rating,
+      numReviews: req.body.numReviews,
+    });
+    const newProduct = await product.save();
+    if (newProduct) {
+      return res
+        .status(201)
+        .send({ message: 'Đã tạo sản phẩm mới', data: newProduct });
+    }
+    return res.status(500).send({ message: 'Lỗi khi tạo mới sản phẩm.'});
+  });
+
+  productRouter.delete(
+    '/:id',
+    isAuth,
+    isAdmin,
+    expressAsyncHandler(async (req, res) => {
+      const product = await Product.findById(req.params.id);
+      if (product) {
+        const deleteProduct = await product.remove();
+        res.send({ message: 'Product Deleted', product: deleteProduct });
+      } else {
+        res.status(404).send({ message: 'Product Not Found' });
+      }
+    })
+  );
+
   export default productRouter;
