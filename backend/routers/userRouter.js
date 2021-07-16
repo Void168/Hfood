@@ -106,7 +106,7 @@ userRouter.delete(
   expressAsyncHandler(async (req, res) => {
     const user = await User.findById(req.params.id);
     if (user) {
-      if (user.email === 'admin@example.com') {
+      if (user.email === 'phuhung16820@gmail.com') {
         res.status(400).send({ message: 'Không thể xóa người Quản lý' });
         return;
       }
@@ -130,9 +130,9 @@ userRouter.put(
       user.isAdmin = Boolean(req.body.isAdmin);
       // user.isAdmin = req.body.isAdmin || user.isAdmin;
       const updatedUser = await user.save();
-      res.send({ message: 'User Updated', user: updatedUser });
+      res.send({ message: 'Cập nhật người dùng thành công', user: updatedUser });
     } else {
-      res.status(404).send({ message: 'User Not Found' });
+      res.status(404).send({ message: 'Không tìm thấy người dùng' });
     }
   })
 );

@@ -34,26 +34,49 @@ productRouter.get(
       }
   }))
 
-  productRouter.post('/', isAuth, isAdmin, async (req, res) => {
-    const product = new Product({
-      name: req.body.name,
-      price: req.body.price,
-      image: req.body.image,
-      brand: req.body.brand,
-      category: req.body.category,
-      countInStock: req.body.countInStock,
-      description: req.body.description,
-      rating: req.body.rating,
-      numReviews: req.body.numReviews,
-    });
-    const newProduct = await product.save();
-    if (newProduct) {
-      return res
-        .status(201)
-        .send({ message: 'Đã tạo sản phẩm mới', data: newProduct });
-    }
-    return res.status(500).send({ message: 'Lỗi khi tạo mới sản phẩm.'});
-  });
+  productRouter.post(
+    '/',
+    isAuth,
+    isAdmin,
+    expressAsyncHandler(async (req, res) => {
+      const product = new Product({
+        name: 'Tên sản phẩm',
+        type: 'Loại sản phẩm',
+        image: '/image/p1.jpg',
+        price: 0,
+        category: 'Danh mục',
+        countInStock: 0,
+        rating: 0,
+        numReview: 0,
+        description: 'Mô tả',
+        import: Date.now(),
+      });
+      const createdProduct = await product.save();
+      res.send({ message: 'Product Created', product: createdProduct });
+    })
+  );
+
+  productRouter.put(
+    '/:id',
+    isAuth,
+    isAdmin,
+    expressAsyncHandler(async (req, res) => {
+      const productId = req.params.id;
+      const product = await Product.findById(productId);
+      if (product) {
+        product.name = req.body.name;
+        product.price = req.body.price;
+        product.image = req.body.image;
+        product.category = req.body.category;
+        product.countInStock = req.body.countInStock;
+        product.description = req.body.description;
+        const updatedProduct = await product.save();
+        res.send({ message: 'Product Updated', product: updatedProduct });
+      } else {
+        res.status(404).send({ message: 'Product Not Found' });
+      }
+    })
+  );
 
   productRouter.delete(
     '/:id',
@@ -69,5 +92,7 @@ productRouter.get(
       }
     })
   );
+
+  
 
   export default productRouter;
