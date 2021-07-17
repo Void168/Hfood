@@ -30,6 +30,7 @@ app.use('/api/categories', categoryRouter);
 
 app.use('/api/orders', orderRouter);
 
+
 app.get('/api/config/paypal' ,(req, res) => {
     res.send(process.env.PAY_PAL_CLIENT || 'sb')
 })

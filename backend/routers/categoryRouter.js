@@ -28,7 +28,7 @@ categoryRouter.get(
           res.send(category);
       }else{
           res.status(404).send({
-              messsage: 'Không tìm thấy danh muc' 
+              messsage: 'Không tìm thấy danh mục' 
           })
       }
   }))
