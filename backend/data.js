@@ -353,7 +353,7 @@ const data = {
             import: '16/08/2021'
         },
     ],
-    category: [
+    categories: [
         {
             name:'Thịt',
             image:'/image/icon/meat.png'
