@@ -5,14 +5,14 @@ const data = {
         {
             name:'Le Phu Hung',
             email:'phuhung16820@gmail.com',
-            image:'/image/Avatar/sfsff.png',
+            avatar:'/image/Avatar/sfsff.png',
             password: bcrypt.hashSync('hung12345', 8),
             isAdmin: true,
         },
         {
             name:'KennyS',
             email:'mrhspacespeaker168@gmail.com',
-            image:'/image/Avatar/800.jpeg',
+            avatar:'/image/Avatar/800.jpeg',
             password: bcrypt.hashSync('hung12345', 8),
             isAdmin: false,
         }

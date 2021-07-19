@@ -72,6 +72,7 @@ userRouter.put(
   expressAsyncHandler(async (req, res) => {
     const user = await User.findById(req.user._id);
     if (user) {
+      user.avatar = req.body.avatar || user.avatar;
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
       if (req.body.password) {
@@ -80,6 +81,7 @@ userRouter.put(
       const updatedUser = await user.save();
       res.send({
         _id: updatedUser._id,
+        avatar: updatedUser.avatar,
         name: updatedUser.name,
         email: updatedUser.email,
         isAdmin: updatedUser.isAdmin,
@@ -125,6 +127,7 @@ userRouter.put(
   expressAsyncHandler(async (req, res) => {
     const user = await User.findById(req.params.id);
     if (user) {
+      user.avatar = req.body.avatar || user.avatar;
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
       user.isAdmin = Boolean(req.body.isAdmin);

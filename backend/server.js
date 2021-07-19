@@ -6,7 +6,9 @@ import userRouter from './routers/userRouter.js';
 import productRouter from './routers/productRouter.js';
 import categoryRouter from './routers/categoryRouter.js';
 import orderRouter from './routers/orderRouter.js';
+import uploadRouter from './routers/uploadRouter.js';
 import dotenv from 'dotenv';
+import path from 'path';
 
 dotenv.config();
 
@@ -21,6 +23,8 @@ mongoose.connect( process.env.MONGODB_URL || 'mongodb://localhost/hfood',{
     useUnifiedTopology: true,
     useCreateIndex: true,
 })
+
+app.use('/api/uploads', uploadRouter);
 
 app.use('/api/users', userRouter);
 
@@ -42,6 +46,8 @@ app.get('/', (req, res) => {
 app.use((err, req, res, next) => {
     res.status(500).send({ message: err.message })
 })
+const __dirname = path.resolve();
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
