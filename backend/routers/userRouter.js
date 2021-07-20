@@ -10,7 +10,7 @@ const userRouter = express.Router();
 userRouter.get(
   '/seed',
   expressAsyncHandler(async (req, res) => {
-    // await User.remove({});
+    await User.remove({});
     const createdUsers = await User.insertMany(data.users);
     res.send({ createdUsers });
   })
@@ -26,6 +26,7 @@ userRouter.post(
           _id: user._id,
           name: user.name,
           email: user.email,
+          avatar: user.avatar,
           isAdmin: user.isAdmin,
           token: generateToken(user),
         });
@@ -42,6 +43,7 @@ userRouter.post(
     const user = new User({
       name: req.body.name,
       email: req.body.email,
+      avatar: req.body.avatar,
       password: bcrypt.hashSync(req.body.password, 8),
     });
     const createdUser = await user.save();
@@ -49,6 +51,7 @@ userRouter.post(
       _id: createdUser._id,
       name: createdUser.name,
       email: createdUser.email,
+      avatar: createdUser.avatar,
       isAdmin: createdUser.isAdmin,
       token: generateToken(createdUser),
     });
