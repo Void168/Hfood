@@ -48,9 +48,9 @@ app.use((err, req, res, next) => {
 })
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
-app.use(express.static(path.join(__dirname, '/frontend/build')));
+app.use(express.static(path.join(__dirname, '/hfood/public')));
 app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname, '/hfood/build/index.html'))
+  res.sendFile(path.join(__dirname, '/hfood/public/index.html'))
 );
 
 const port = process.env.PORT || 5000;
