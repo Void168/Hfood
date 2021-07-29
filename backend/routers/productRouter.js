@@ -40,15 +40,15 @@ productRouter.get(
     isAdmin,
     expressAsyncHandler(async (req, res) => {
       const product = new Product({
-        name: 'Tên sản phẩm',
-        type: 'Loại sản phẩm',
-        image: '/image/p1.jpg',
+        name: '',
+        type: '',
+        image: '',
         price: 0,
-        category: 'Danh mục',
+        category: '',
         countInStock: 0,
         rating: 0,
         numReview: 0,
-        description: 'Mô tả',
+        description: '',
         import: Date.now(),
       });
       const createdProduct = await product.save();

@@ -9,6 +9,7 @@ import orderRouter from './routers/orderRouter.js';
 import uploadRouter from './routers/uploadRouter.js';
 import dotenv from 'dotenv';
 import path from 'path';
+import { googleLogin } from './utils.js';
 
 
 dotenv.config();
@@ -34,6 +35,8 @@ app.use('/api/products', productRouter);
 app.use('/api/categories', categoryRouter);
 
 app.use('/api/orders', orderRouter);
+
+app.use('/api/googlelogin', googleLogin);
 
 
 app.get('/api/config/paypal' ,(req, res) => {
