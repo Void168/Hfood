@@ -5,6 +5,7 @@ import Product from '../models/productModel.js';
 import { isAdmin, isAuth } from '../utils.js';
 
 const productRouter = express.Router();
+const today = Date.now();
 
 productRouter.get(
     '/',
@@ -49,7 +50,7 @@ productRouter.get(
         rating: 0,
         numReview: 0,
         description: '',
-        import: Date.now(),
+        import: new Intl.DateTimeFormat('vi-VN', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(today),
       });
       const createdProduct = await product.save();
       res.send({ message: 'Product Created', product: createdProduct });
@@ -65,6 +66,7 @@ productRouter.get(
       const product = await Product.findById(productId);
       if (product) {
         product.name = req.body.name;
+        product.type = req.body.type;
         product.price = req.body.price;
         product.image = req.body.image;
         product.category = req.body.category;
