@@ -6,6 +6,20 @@ import { isAuth, isAdmin } from '../utils.js';
 
 const orderRouter = express.Router();
 
+orderRouter.get(
+  '/',
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const user = req.query.user || '';
+    const userFilter = user ? { user } : {};
+
+    const orders = await Order.find({ ...userFilter }).populate(
+      'name'
+    );
+    res.send(orders);
+  })
+);
+
 orderRouter.get('/mine', isAuth, expressAsyncHandler(async (req, res) =>{
     const orders = await Order.find({
         user: req.user._id
@@ -70,6 +84,21 @@ orderRouter.put('/:id/pay', isAuth, expressAsyncHandler(async (req, res) =>{
         })
     }
 }))
+
+orderRouter.delete(
+  '/:id',
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const order = await Order.findById(req.params.id);
+    if (order) {
+      const deleteOrder = await order.remove();
+      res.send({ message: 'Đã xóa đơn hàng', order: deleteOrder });
+    } else {
+      res.status(404).send({ message: 'Không tìm thấy đơn hàng' });
+    }
+  })
+);
 
 orderRouter.get(
     '/summary',
