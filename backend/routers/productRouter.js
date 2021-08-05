@@ -4,6 +4,7 @@ import data from '../data.js';
 import Product from '../models/productModel.js';
 import { isAdmin, isAuth } from '../utils.js';
 
+
 const productRouter = express.Router();
 const today = Date.now();
 
