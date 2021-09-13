@@ -40,7 +40,7 @@ app.use('/api/googlelogin', googleLogin);
 
 
 app.get('/api/config/paypal' ,(req, res) => {
-    res.send(process.env.PAY_PAL_CLIENT || 'sb')
+    res.send(process.env.PAYPAL_CLIENT_ID || 'sb')
 })
 
 app.get('/', (req, res) => {
