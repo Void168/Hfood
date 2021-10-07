@@ -1,5 +1,10 @@
 import mongoose from 'mongoose';
 
+const validator = (v) =>
+{
+  return v.length > 7;
+}
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -20,7 +25,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true,
-    min: 8,
+    validate: [
+      validator, 'Mật khẩu quá yếu'
+    ]
   },
   isAdmin: {
     type: Boolean,
@@ -33,5 +40,10 @@ const userSchema = new mongoose.Schema({
 }, {
   timestamps: true,
 });
+
+userSchema.path('email').validate(() =>
+  {
+    return false
+  }, 'Email đã tồn tại')
 const User = mongoose.model('User', userSchema);
 export default User;

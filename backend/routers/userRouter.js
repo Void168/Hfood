@@ -78,7 +78,7 @@ userRouter.put(
       user.avatar = req.body.avatar || user.avatar;
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
-      if (req.body.password) {
+      if (req.body.password.length >= 8) {
         user.password = bcrypt.hashSync(req.body.password, 8);
       }
       const updatedUser = await user.save();

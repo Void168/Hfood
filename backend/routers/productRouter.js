@@ -45,17 +45,17 @@ productRouter.get(
         name: '',
         type: '',
         image: '',
-        price: 1,
+        price: 0,
         category: '',
         expiry:'',
         countInStock: 0,
-        rating: 1,
+        rating: 0,
         numReview: 0,
         description: '',
         import: new Intl.DateTimeFormat('vi-VN', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(today),
       });
       const createdProduct = await product.save();
-      res.send({ message: 'Product Created', product: createdProduct });
+      res.send({ message: 'Sản phẩm mới đã được tạo', product: createdProduct });
     })
   );
 
@@ -76,9 +76,9 @@ productRouter.get(
         product.countInStock = req.body.countInStock;
         product.description = req.body.description;
         const updatedProduct = await product.save();
-        res.send({ message: 'Product Updated', product: updatedProduct });
+        res.send({ message: 'Cập nhật sản phẩm thành công', product: updatedProduct });
       } else {
-        res.status(404).send({ message: 'Product Not Found' });
+        res.status(404).send({ message: 'Không tìm thấy sản phẩm' });
       }
     })
   );
@@ -91,9 +91,9 @@ productRouter.get(
       const product = await Product.findById(req.params.id);
       if (product) {
         const deleteProduct = await product.remove();
-        res.send({ message: 'Product Deleted', product: deleteProduct });
+        res.send({ message: 'Đã xóa sản phẩm', product: deleteProduct });
       } else {
-        res.status(404).send({ message: 'Product Not Found' });
+        res.status(404).send({ message: 'Không tìm thấy sản phẩm' });
       }
     })
   );
