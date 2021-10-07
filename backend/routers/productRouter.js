@@ -45,10 +45,11 @@ productRouter.get(
         name: '',
         type: '',
         image: '',
-        price: 0,
+        price: 1,
         category: '',
+        expiry:'',
         countInStock: 0,
-        rating: 0,
+        rating: 1,
         numReview: 0,
         description: '',
         import: new Intl.DateTimeFormat('vi-VN', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(today),
@@ -71,6 +72,7 @@ productRouter.get(
         product.price = req.body.price;
         product.image = req.body.image;
         product.category = req.body.category;
+        product.expiry = req.body.expiry;
         product.countInStock = req.body.countInStock;
         product.description = req.body.description;
         const updatedProduct = await product.save();
