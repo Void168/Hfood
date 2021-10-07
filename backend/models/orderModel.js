@@ -5,7 +5,7 @@ const orderSchema = new mongoose.Schema(
     orderItems: [
       {
         name: { type: String, required: true },
-        qty: { type: Number, required: true },
+        qty: { type: Number, required: true, min: 1},
         image: { type: String, required: true },
         price: { type: Number, required: true },
         product: {
@@ -20,8 +20,8 @@ const orderSchema = new mongoose.Schema(
       address: { type: String, required: true },
       email: { type: String, required: true},
       city: { type: String, required: true },
-      district: { type: String, required: false },
-      phone: { type: Number, required: true },
+      district: { type: String, required: true },
+      phone: { type: String, required: true },
     },
     paymentMethod: { type: String, required: true },
     paymentResult:{
@@ -30,10 +30,10 @@ const orderSchema = new mongoose.Schema(
       update_time:String,
       email_address: String
     },
-    itemsPrice: { type: Number, required: true },
-    shippingPrice: { type: Number, required: true },
-    taxPrice: { type: Number, required: true },
-    totalPrice: { type: Number, required: true },
+    itemsPrice: { type: Number, required: true, min: 1 },
+    shippingPrice: { type: Number, required: true, min: 1},
+    taxPrice: { type: Number, required: true, min: 1 },
+    totalPrice: { type: Number, required: true, min: 1 },
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     isPaid: { type: Boolean, default: false },
     paidAt: { type: Date },

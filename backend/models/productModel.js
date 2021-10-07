@@ -6,12 +6,13 @@ const productSchema = new mongoose.Schema(
     name: { type: String, required: false, unique: true },
     image: { type: String, required: false },
     category: { type: String, required: false },
+    expiry: {type: String, required: true},
     type: {type: String, required: false},
     description: { type: String, required: false },
-    price: { type: Number, required: false },
-    countInStock: { type: Number, required: false },
-    rating: { type: Number, required: false },
-    numReview: { type: Number, required: false },
+    price: { type: Number, required: false, min: 1},
+    countInStock: { type: Number, required: false, min: 0},
+    rating: { type: Number, required: false, min: 1},
+    numReview: { type: Number, required: false, min: 0 },
     import: { type: String, required: false}
   },
   {
