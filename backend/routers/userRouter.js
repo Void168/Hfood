@@ -47,14 +47,20 @@ userRouter.post(
       password: bcrypt.hashSync(req.body.password, 8),
     });
     const createdUser = await user.save();
-    res.send({
-      _id: createdUser._id,
-      name: createdUser.name,
-      email: createdUser.email,
-      avatar: createdUser.avatar,
-      isAdmin: createdUser.isAdmin,
-      token: generateToken(createdUser),
-    });
+    if (!createdUser) {
+      res.status(401).send({
+        message: 'Email đã tồn tại',
+      })
+    } else {
+        res.send({
+              _id: createdUser._id,
+              name: createdUser.name,
+              email: createdUser.email,
+              avatar: createdUser.avatar,
+              isAdmin: createdUser.isAdmin,
+              token: generateToken(createdUser),
+      });
+    }
   })
 );
 
@@ -78,6 +84,7 @@ userRouter.put(
       user.avatar = req.body.avatar || user.avatar;
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
+      user.phone = req.body.phone || user.phone;
       if (req.body.password.length >= 8) {
         user.password = bcrypt.hashSync(req.body.password, 8);
       }
@@ -88,6 +95,7 @@ userRouter.put(
         name: updatedUser.name,
         email: updatedUser.email,
         isAdmin: updatedUser.isAdmin,
+        phone: updatedUser.phone,
         token: generateToken(updatedUser),
       });
     }
@@ -133,6 +141,7 @@ userRouter.put(
       user.avatar = req.body.avatar || user.avatar;
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
+      user.phone = req.body.phone || user.phone;
       user.isAdmin = Boolean(req.body.isAdmin);
       // user.isAdmin = req.body.isAdmin || user.isAdmin;
       const updatedUser = await user.save();

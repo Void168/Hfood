@@ -1,0 +1,15 @@
+import mongoose from 'mongoose';
+
+const voucherSchema = new mongoose.Schema(
+  {
+    code: { type: String, required: true, unique: true },
+    image: { type: String, required: true },
+    content: { type: String, required: true },
+  },
+  {
+    timestamps: true,
+  }
+);
+const Vouchers = mongoose.model('Vouchers', voucherSchema);
+
+export default Vouchers;

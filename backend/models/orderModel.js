@@ -5,7 +5,8 @@ const orderSchema = new mongoose.Schema(
     orderItems: [
       {
         name: { type: String, required: true },
-        qty: { type: Number, required: true, min: 1},
+        qty: { type: Number, required: true, min: 1 },
+        discount: { type: String, required: true, min: 0},
         image: { type: String, required: true },
         price: { type: Number, required: true },
         product: {
@@ -31,7 +32,7 @@ const orderSchema = new mongoose.Schema(
       email_address: String
     },
     itemsPrice: { type: Number, required: true, min: 1 },
-    shippingPrice: { type: Number, required: true, min: 1},
+    shippingPrice: { type: Number, required: true, min: 0},
     taxPrice: { type: Number, required: true, min: 1 },
     totalPrice: { type: Number, required: true, min: 1 },
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },

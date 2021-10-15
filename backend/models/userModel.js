@@ -29,6 +29,11 @@ const userSchema = new mongoose.Schema({
       validator, 'Mật khẩu quá yếu'
     ]
   },
+  phone: {
+    type: String,
+    unique: true,
+    trim: true
+  },
   isAdmin: {
     type: Boolean,
     default: false,
@@ -41,9 +46,5 @@ const userSchema = new mongoose.Schema({
   timestamps: true,
 });
 
-userSchema.path('email').validate(() =>
-  {
-    return false
-  }, 'Email đã tồn tại')
 const User = mongoose.model('User', userSchema);
 export default User;
