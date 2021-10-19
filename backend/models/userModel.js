@@ -29,19 +29,16 @@ const userSchema = new mongoose.Schema({
       validator, 'Mật khẩu quá yếu'
     ]
   },
-  phone: {
-    type: String,
-    unique: true,
-    trim: true
-  },
   isAdmin: {
     type: Boolean,
     default: false,
     required: true
   },
   voucher: {
-    type: String,
-  }
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Vouchers',
+    required: false,
+  },
 }, {
   timestamps: true,
 });

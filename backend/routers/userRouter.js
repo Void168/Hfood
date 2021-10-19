@@ -27,6 +27,7 @@ userRouter.post(
           name: user.name,
           email: user.email,
           avatar: user.avatar,
+          voucher: user.voucher,
           isAdmin: user.isAdmin,
           token: generateToken(user),
         });
@@ -57,6 +58,7 @@ userRouter.post(
               name: createdUser.name,
               email: createdUser.email,
               avatar: createdUser.avatar,
+              voucher: createdUser.voucher,
               isAdmin: createdUser.isAdmin,
               token: generateToken(createdUser),
       });
@@ -84,7 +86,7 @@ userRouter.put(
       user.avatar = req.body.avatar || user.avatar;
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
-      user.phone = req.body.phone || user.phone;
+      user.voucher = req.body.voucher || user.voucher;
       if (req.body.password.length >= 8) {
         user.password = bcrypt.hashSync(req.body.password, 8);
       }
@@ -94,8 +96,8 @@ userRouter.put(
         avatar: updatedUser.avatar,
         name: updatedUser.name,
         email: updatedUser.email,
+        voucher: updatedUser.voucher,
         isAdmin: updatedUser.isAdmin,
-        phone: updatedUser.phone,
         token: generateToken(updatedUser),
       });
     }
@@ -141,7 +143,6 @@ userRouter.put(
       user.avatar = req.body.avatar || user.avatar;
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
-      user.phone = req.body.phone || user.phone;
       user.isAdmin = Boolean(req.body.isAdmin);
       // user.isAdmin = req.body.isAdmin || user.isAdmin;
       const updatedUser = await user.save();

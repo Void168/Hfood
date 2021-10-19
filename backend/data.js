@@ -481,23 +481,28 @@ const data = {
         {
             code: 'HFOOD50',
             content: 'Giảm giá 50k đơn hàng',
-            image:'/image/Avatar/sfsff.png'
+            pic: '/image/Avatar/sfsff.png',
+            expiry: Date.now()
         },
         {
             code: 'HFFSHIP',
             content: 'Miễn phí giao hàng',
-            image:'/image/Avatar/sfsff.png'
+            pic: '/image/Avatar/sfsff.png',
+            expiry: Date.now()
         },
         {
             code: 'HF10P',
             content: 'Giảm giá 10% đơn hàng',
-            image:'/image/Avatar/sfsff.png'
+            pic: '/image/Avatar/sfsff.png',
+            expiry: Date.now()
         },
         {
             code: 'HFVEGET20',
             content: 'Giảm giá 20% mặt hàng rau củ',
-            image:'/image/Avatar/sfsff.png'
+            pic: '/image/Avatar/sfsff.png',
+            expiry: Date.now()
         }
     ],
 }
+
 export default data;

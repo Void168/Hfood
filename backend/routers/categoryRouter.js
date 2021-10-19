@@ -17,7 +17,7 @@ categoryRouter.get(
     '/seed',
     expressAsyncHandler(async (req, res) => {
         await Categories.remove({});
-        const createdCategories = await Categories.insertMany(data.category);
+        const createdCategories = await Categories.insertMany(data.categories);
         res.send({ createdCategories });
     })
   );

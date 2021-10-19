@@ -10,6 +10,7 @@ import uploadRouter from './routers/uploadRouter.js';
 import dotenv from 'dotenv';
 import path from 'path';
 import { googleLogin } from './utils.js';
+import voucherRouter from './routers/voucherRouter.js';
 
 
 dotenv.config();
@@ -33,6 +34,8 @@ app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
 
 app.use('/api/categories', categoryRouter);
+
+app.use('/api/vouchers', voucherRouter);
 
 app.use('/api/orders', orderRouter);
 
