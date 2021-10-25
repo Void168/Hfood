@@ -9,13 +9,6 @@ const data = {
             password: bcrypt.hashSync('hung12345', 8),
             isAdmin: true,
         },
-        {
-            name:'KennyS',
-            email:'mrhspacespeaker168@gmail.com',
-            avatar:'/image/Avatar/800.jpeg',
-            password: bcrypt.hashSync('hung12345', 8),
-            isAdmin: false,
-        }
     ],
     products: [
         {

@@ -110,7 +110,7 @@ productRouter.get(
       if (product.reviews.find((x) => x.name === req.user.name)) {
         return res
           .status(400)
-          .send({ message: 'You already submitted a review' });
+          .send({ message: 'Bạn đã bình luận về sản phẩm này rồi' });
       }
       const review = {
         name: req.user.name,
@@ -124,11 +124,11 @@ productRouter.get(
         product.reviews.length;
       const updatedProduct = await product.save();
       res.status(201).send({
-        message: 'Review Created',
+        message: 'Đã nhận xét',
         review: updatedProduct.reviews[updatedProduct.reviews.length - 1],
       });
     } else {
-      res.status(404).send({ message: 'Product Not Found' });
+      res.status(404).send({ message: 'Không tìm thấy sản phẩm' });
     }
   })
 );

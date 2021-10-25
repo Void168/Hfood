@@ -27,7 +27,7 @@ userRouter.post(
           name: user.name,
           email: user.email,
           avatar: user.avatar,
-          voucher: user.voucher,
+          phone: user.phone,
           isAdmin: user.isAdmin,
           token: generateToken(user),
         });
@@ -45,23 +45,25 @@ userRouter.post(
       name: req.body.name,
       email: req.body.email,
       avatar: req.body.avatar,
+      phone: req.body.phone,
       password: bcrypt.hashSync(req.body.password, 8),
     });
     const createdUser = await user.save();
-    if (!createdUser) {
-      res.status(401).send({
-        message: 'Email đã tồn tại',
-      })
-    } else {
-        res.send({
-              _id: createdUser._id,
-              name: createdUser.name,
-              email: createdUser.email,
-              avatar: createdUser.avatar,
-              voucher: createdUser.voucher,
-              isAdmin: createdUser.isAdmin,
-              token: generateToken(createdUser),
+    if (!createdUser.email == user.email && !createdUser.phone == user.phone) {
+        res.status(401).send({
+        message: 'Email đã tồn tại'
       });
+    } else {
+      res.send({
+        _id: createdUser._id,
+        name: createdUser.name,
+        email: createdUser.email,
+        avatar: createdUser.avatar,
+        isAdmin: createdUser.isAdmin,
+        phone: createdUser.phone,
+        token: generateToken(createdUser),
+      });
+      return;
     }
   })
 );
@@ -86,7 +88,7 @@ userRouter.put(
       user.avatar = req.body.avatar || user.avatar;
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
-      user.voucher = req.body.voucher || user.voucher;
+      user.phone = req.body.phone || user.phone;
       if (req.body.password.length >= 8) {
         user.password = bcrypt.hashSync(req.body.password, 8);
       }
@@ -96,8 +98,8 @@ userRouter.put(
         avatar: updatedUser.avatar,
         name: updatedUser.name,
         email: updatedUser.email,
-        voucher: updatedUser.voucher,
         isAdmin: updatedUser.isAdmin,
+        phone: updatedUser.phone,
         token: generateToken(updatedUser),
       });
     }
@@ -144,7 +146,7 @@ userRouter.put(
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
       user.isAdmin = Boolean(req.body.isAdmin);
-      // user.isAdmin = req.body.isAdmin || user.isAdmin;
+      user.phone = req.body.phone || user.phone;
       const updatedUser = await user.save();
       res.send({ message: 'Cập nhật người dùng thành công', user: updatedUser });
     } else {
