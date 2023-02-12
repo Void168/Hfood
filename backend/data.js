@@ -7,6 +7,7 @@ const data = {
             email:'phuhung16820@gmail.com',
             avatar:'/image/Avatar/sfsff.png',
             password: bcrypt.hashSync('hung12345', 8),
+            phone:'0866243888',
             isAdmin: true,
         },
     ],

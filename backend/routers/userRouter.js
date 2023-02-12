@@ -49,7 +49,7 @@ userRouter.post(
       password: bcrypt.hashSync(req.body.password, 8),
     });
     const createdUser = await user.save();
-    if (!createdUser.email == user.email && !createdUser.phone == user.phone) {
+    if (!createdUser.email == user.email) {
         res.status(401).send({
         message: 'Email đã tồn tại'
       });
@@ -79,6 +79,7 @@ userRouter.get(
     }
   })
 );
+
 userRouter.put(
   '/profile',
   isAuth,

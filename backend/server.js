@@ -9,7 +9,6 @@ import orderRouter from './routers/orderRouter.js';
 import uploadRouter from './routers/uploadRouter.js';
 import dotenv from 'dotenv';
 import path from 'path';
-import { googleLogin } from './utils.js';
 import voucherRouter from './routers/voucherRouter.js';
 
 
@@ -21,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ 
     extended: true,
 }))
-mongoose.connect( process.env.MONGODB_URL || 'mongodb://localhost/hfood',{
+mongoose.connect( process.env.MONGODB_URL || 'mongodb://127.0.0.1/hfood',{
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -38,8 +37,6 @@ app.use('/api/categories', categoryRouter);
 app.use('/api/vouchers', voucherRouter);
 
 app.use('/api/orders', orderRouter);
-
-app.use('/api/googlelogin', googleLogin);
 
 
 app.get('/api/config/paypal' ,(req, res) => {
